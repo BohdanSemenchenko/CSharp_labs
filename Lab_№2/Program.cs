@@ -11,6 +11,7 @@ namespace Lab2
     {
         static void Main()
         {
+            // створюємо список користувачів з різнмим ролями
             List<User> users = new List<User>
             {
                 new Admin("AdminUser", "admin@example.com", "admin123"),
@@ -18,6 +19,7 @@ namespace Lab2
                 new RegularUser("RegUser", "user@example.com", "user123")
             };
 
+            // викликаємо перевизначений метод DisplayInfo для кожного користувача
             Console.WriteLine("\n=== Інформація про користувачів ===");
             foreach (var user in users)
             {
@@ -27,25 +29,30 @@ namespace Lab2
 
             Console.WriteLine("=== Тестування методів ===");
 
-          
+
+            // демонстрація поліморфізму - виклик методів залежно від типу об'єкта
             foreach (var user in users)
             {
                 if (user is Admin admin)
                 {
+                    // метод для адміністратора — блокування іншого користувача
                     admin.BlockUser(users[2]); 
                 }
                 else if (user is Moderator moderator)
                 {
+                    // метод для модератора - модерація контенту
                     moderator.ModerateContent();
                 }
                 else if (user is RegularUser regularUser)
                 {
+                    // метод звичайного користувача - написання коментаря
                     regularUser.PostComment();
                 }
             }
 
             Console.WriteLine("\n=== Перевірка аутентифікації ===");
 
+            // тестування логіна: список спроб входу
             var loginAttempts = new List<(User user, string email, string password)>
             {
                 (users[0], "admin@example.com", "admin123"), 
