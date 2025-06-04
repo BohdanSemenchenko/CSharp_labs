@@ -1,17 +1,21 @@
 using System;
 
+// оголошення класу 
 class Product{
+    
+    // приватні поля для інкапсуляції
     private string name;
     private int quantity;
     private decimal price;
 
-
+    // конструктор для ініціалізації значень полів
     public Product(string name, int quantity, demical price){
             Name = name;
             Price =price;
             this.quantity = quantity >=0 ? quantity:  throw new ArgumentException("Кількість товару не може бути від'ємною");
         }
 
+    // властивість нейм з перевіркою на порожнє значення
     public string Name{
         get{return name;}
         set{
@@ -21,6 +25,7 @@ class Product{
         }
     }
 
+    // властивість прайс з перевіркою, що ціна не від'ємна
     public decimal Price{
         get {return price; }
         set{
@@ -29,21 +34,26 @@ class Product{
             price =  value;    
         }
     }
+
+    // властивість тільки для читання к-сті товарів
     public int Quantity{
         get {return quantity; }
         
     }
 
+    // властивість для обчислення загальної вартості товарів на складі
     public demical TotalValue{
         get {return price * quantity; }
     }
 
+    // метод для поповнення запасів
     public void Restock(int amount){
         if( amount <=0)
           throw new ArgumentException("Кількість для постачання має бути більше 0");
         quantity += amount;    
     }
 
+    // метод для продажу
     public void Sell(int amount){
         if(amount <=0)
             throw new ArgumentException("Кількість для продажу має бути більше 0");
@@ -55,6 +65,7 @@ class Product{
         quantity -= amount;
     }
 
+    // метод для отримання інформації про товар
     public string GetInfo(){
         return $"Товар: {Name}, Ціна: {Price}, Кількість: {Quantity}, Загальна вартість: {TotalValue} грн";
     }
