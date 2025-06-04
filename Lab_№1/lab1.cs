@@ -9,9 +9,9 @@ class Product{
     private decimal price;
 
     // конструктор для ініціалізації значень полів
-    public Product(string name, int quantity, demical price){
+    public Product(string name, int quantity, decimal price){
             Name = name;
-            Price =price;
+            Price = price;
             this.quantity = quantity >=0 ? quantity:  throw new ArgumentException("Кількість товару не може бути від'ємною");
         }
 
@@ -29,9 +29,9 @@ class Product{
     public decimal Price{
         get {return price; }
         set{
-            if(value <0)
+            if(value < 0)
                 throw new ArgumentException("Ціна товару не може бути від'ємною");
-            price =  value;    
+            price = value;    
         }
     }
 
